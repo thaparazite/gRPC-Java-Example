@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_package = "gRPC_resources";// package name for generated java classes
+
+service User{
+    rpc login(LoginRequest) returns (APIResponse);// login the user to the system
+    rpc logout(Empty) returns (APIResponse);// logout the user from the system
+    rpc addUser(AddUserRequest) returns (APIResponse); // add user to the system
+    rpc deleteUser(DeleteUserRequest) returns (APIResponse); // delete a user
+}// end of User service
+
+message LoginRequest{
+    string userName = 1;
+    string password = 2;
+}// end of LoginRequest message
+
+message AddUserRequest{
+    string userName = 1;
+    string password = 2;
+}// end of AddUserRequest message
+
+message DeleteUserRequest{
+    string userName = 1; // username of the user to be deleted
+}
+
+message APIResponse{
+    string responseMessage = 1;
+    int32   responseCode = 2;
+}// end of APIResponse message
+
+message Empty{}// end of Empty message
